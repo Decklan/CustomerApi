@@ -1,0 +1,48 @@
+openapi: 3.0.1
+info:
+  title: CustomerApi
+  description: An API for cool Customer stuff
+  version: v1
+paths:
+  /Customer/GetAllCustomers:
+    get:
+      tags:
+        - Customer
+      summary: Fetches all Customers
+      description: GET /Customer/GetCustomers
+      responses:
+        '200':
+          description: Returns a collection of all customers
+  /Customer/CreateNewCustomer:
+    post:
+      tags:
+        - Customer
+      summary: Creates a new customer
+      description: "Sample Request:\r\nPOST /Customer/CreateNewCustomer\r\n{\r\n    \"firstName\": \"Old\",\r\n    \"lastName\": \"Greg\"\r\n}"
+      requestBody:
+        description: The first and last name of the new customer to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCustomerDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/NewCustomerDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/NewCustomerDto'
+      responses:
+        '200':
+          description: Returns a collection of all customers
+components:
+  schemas:
+    NewCustomerDto:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+      additionalProperties: false
